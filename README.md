@@ -2,7 +2,7 @@
     Uma plataforma de gestão de projetos na indústria, especialmente projetada para empresas que terceirizam a execução de serviços específicos, com a necessidade de uma ferramenta dedicada ao controle eficiente de contratos.
     
     Acesso disponível em: https://andiara.willcode.tech 
-    
+
 # Requisitos para instalação
     - MySQL versão 8
     - PHP versão 8 
@@ -59,3 +59,6 @@
         
     3 - Configuração do arquivo ".htaccess" 
         * Altere os diretórios dos arquivos rereferênciados para sua estrutura de pastas 
+
+    4 - Acesse o sistema
+        * Acesse o endereço configurado no virtual host pelo navegador e teste a aplicação

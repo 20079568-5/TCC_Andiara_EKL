@@ -1,0 +1,4 @@
+php_value include_path ".:/var/www/html/projeto.andiara.local/tcc_andiara/includes:/var/www/html/projeto.andiara.local/tcc_andiara/includes/classes:/var/www/html/projeto.andiara.local/tcc_andiara/includes/api" 
+php_value auto_prepend_file /var/www/html/projeto.andiara.local/tcc_andiara/includes/config.php
+php_value error_log "/var/www/html/projeto.andiara.local/tcc_andiara/logs/error.log"
+Options -Indexes

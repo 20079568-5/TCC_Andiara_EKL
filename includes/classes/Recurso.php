@@ -203,8 +203,10 @@
     }
     public static function get_list_options_tipo(){
       $list = [
-        [ "id" => "Proprio", "name" => "Proprio" ],
-        [ "id" => "Alugado", "name" => "Alugado" ],
+        [ "id" => "Equipamento", "name" => "Equipamento" ],
+        [ "id" => "Insumo", "name" => "Insumo" ],
+        [ "id" => "Pessoa", "name" => "Pessoa" ],
+        [ "id" => "Veículo", "name" => "Veículo" ],
       ];
       $return = [];
       foreach ( $list as $data ){

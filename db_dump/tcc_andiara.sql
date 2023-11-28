@@ -1,29 +1,34 @@
--- MySQL dump 10.13  Distrib 8.0.35, for Linux (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: tcc_andiara
--- ------------------------------------------------------
--- Server version	8.0.35-0ubuntu0.23.10.1
+-- Host: localhost:3306
+-- Tempo de geração: 27/11/2023 às 21:10
+-- Versão do servidor: 8.0.33-cll-lve
+-- Versão do PHP: 8.1.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `contrato`
+-- Banco de dados: `willcode_tcc_andiara`
 --
 
-DROP TABLE IF EXISTS `contrato`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `contrato`
+--
+
 CREATE TABLE `contrato` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `numero` varchar(50) DEFAULT NULL,
   `status` varchar(45) NOT NULL DEFAULT 'Ativo',
   `dt_inicio` date NOT NULL,
@@ -32,209 +37,300 @@ CREATE TABLE `contrato` (
   `dt_aditamento` date DEFAULT NULL,
   `orcamento_inicial` double(10,2) NOT NULL DEFAULT '0.00',
   `saldo_orcamento` double(10,2) NOT NULL DEFAULT '0.00',
-  `nome_empresa` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `nome_empresa` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `contrato`
+-- Despejando dados para a tabela `contrato`
 --
 
-LOCK TABLES `contrato` WRITE;
-/*!40000 ALTER TABLE `contrato` DISABLE KEYS */;
-INSERT INTO `contrato` VALUES (11,'0001','Inativo','2023-01-01','2024-01-01','2024-04-01','2024-05-01',500000.00,300000.00,'Andiara Empresária');
-/*!40000 ALTER TABLE `contrato` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `contrato` (`id`, `numero`, `status`, `dt_inicio`, `dt_termino`, `dt_encerramento`, `dt_aditamento`, `orcamento_inicial`, `saldo_orcamento`, `nome_empresa`) VALUES
+(11, '0001', 'Inativo', '2023-01-01', '2024-01-01', '2024-04-01', '2024-05-01', 500000.00, 300000.00, 'Empresa 1'),
+(12, '0002', 'Ativo', '2023-01-01', '2024-01-01', NULL, '2024-06-01', 5555555.00, 2555555.00, 'Empresa 2'),
+(13, '0003', 'Ativo', '2023-11-01', '2024-11-01', NULL, NULL, 100000.00, 80000.00, 'Empresa 3');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `recurso`
+-- Estrutura para tabela `recurso`
 --
 
-DROP TABLE IF EXISTS `recurso`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recurso` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `nome` varchar(100) NOT NULL,
   `tipo` varchar(50) DEFAULT NULL,
   `quantidade` int DEFAULT NULL,
   `validade_meses` int NOT NULL DEFAULT '1',
-  `status` varchar(45) NOT NULL DEFAULT 'Ativo',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `status` varchar(45) NOT NULL DEFAULT 'Ativo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `recurso`
+-- Despejando dados para a tabela `recurso`
 --
 
-LOCK TABLES `recurso` WRITE;
-/*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
-INSERT INTO `recurso` VALUES (3,'Ferramentas de Inspeção','Proprio',8,10,'Ativo'),(4,'Máquina de Corte','Proprio',5,200,'Ativo'),(5,'Escavadeira de Esteira','Alugado',2,4,'Ativo');
-/*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `recurso` (`id`, `nome`, `tipo`, `quantidade`, `validade_meses`, `status`) VALUES
+(6, 'Betoneira', 'Equipamento', 10, 15, 'Ativo'),
+(7, 'Sacos de areia', 'Insumo', 200, 5, 'Ativo'),
+(8, 'Fiscal de obra - Fulano', 'Pessoa', 1, 12, 'Ativo'),
+(9, 'Caminhão Betoneira', 'Veículo', 1, 58, 'Ativo'),
+(10, 'Sacos de cimento', 'Insumo', 200, 10, 'Ativo'),
+(11, 'Pá', 'Equipamento', 25, 36, 'Ativo'),
+(12, 'Técnico de segurança - Ciclano', 'Pessoa', 1, 36, 'Ativo');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `recursos_contrato`
+-- Estrutura para tabela `recursos_contrato`
 --
 
-DROP TABLE IF EXISTS `recursos_contrato`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recursos_contrato` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `id_contrato` int NOT NULL,
   `id_recurso` int NOT NULL,
   `validade_meses` int DEFAULT NULL,
-  `status` varchar(45) DEFAULT 'Ativo',
-  PRIMARY KEY (`id`),
-  KEY `fk_recursos_contrato_id_contrato_idx` (`id_contrato`),
-  KEY `fk_recursos_contrato_id_recurso_idx` (`id_recurso`),
-  CONSTRAINT `fk_recursos_contrato_id_contrato` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id`),
-  CONSTRAINT `fk_recursos_contrato_id_recurso` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `status` varchar(45) DEFAULT 'Ativo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `recursos_contrato`
+-- Despejando dados para a tabela `recursos_contrato`
 --
 
-LOCK TABLES `recursos_contrato` WRITE;
-/*!40000 ALTER TABLE `recursos_contrato` DISABLE KEYS */;
-INSERT INTO `recursos_contrato` VALUES (6,11,4,10,'Ativo');
-/*!40000 ALTER TABLE `recursos_contrato` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `recursos_contrato` (`id`, `id_contrato`, `id_recurso`, `validade_meses`, `status`) VALUES
+(10, 11, 6, NULL, 'Ativo'),
+(11, 11, 10, NULL, 'Ativo'),
+(12, 11, 8, NULL, 'Ativo'),
+(13, 12, 9, NULL, 'Ativo'),
+(14, 12, 7, NULL, 'Ativo');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `tarefas`
+-- Estrutura para tabela `tarefas`
 --
 
-DROP TABLE IF EXISTS `tarefas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tarefas` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `nome` varchar(100) NOT NULL,
   `validade_meses` int DEFAULT NULL,
   `opcional_obrigatoria` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'null',
-  `status` varchar(45) DEFAULT 'Ativo',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `status` varchar(45) DEFAULT 'Ativo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `tarefas`
+-- Despejando dados para a tabela `tarefas`
 --
 
-LOCK TABLES `tarefas` WRITE;
-/*!40000 ALTER TABLE `tarefas` DISABLE KEYS */;
-INSERT INTO `tarefas` VALUES (3,'Cadastrar Documentos',6,'Obrigatória','Ativo'),(4,'Analisar Riscos',4,'Opcional','Ativo'),(5,'Auditar Resultados',5,'Opcional','Ativo');
-/*!40000 ALTER TABLE `tarefas` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `tarefas` (`id`, `nome`, `validade_meses`, `opcional_obrigatoria`, `status`) VALUES
+(6, '1- Análise financeira', NULL, 'Obrigatória', 'Ativo'),
+(7, '2- Assinatura do contrato', NULL, 'Obrigatória', 'Ativo'),
+(8, '3- Acompanhamento mensal em sítio', 1, 'Obrigatória', 'Ativo'),
+(9, '4- Análise de risco trabalhista', 1, 'Opcional', 'Ativo'),
+(10, '5- Auditoria de obra', 2, 'Opcional', 'Ativo'),
+(11, '6- Fiscalização de equipamentos', 3, 'Opcional', 'Ativo'),
+(12, '7- Encerramento de contrato', NULL, 'Opcional', 'Ativo'),
+(13, '8- Aditamento de contrato', NULL, 'Opcional', 'Ativo');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `tarefas_contrato`
+-- Estrutura para tabela `tarefas_contrato`
 --
 
-DROP TABLE IF EXISTS `tarefas_contrato`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tarefas_contrato` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `id_contrato` int NOT NULL,
   `id_tarefa` int NOT NULL,
   `validade_meses` int DEFAULT NULL,
-  `status` varchar(45) DEFAULT 'Ativo',
-  PRIMARY KEY (`id`),
-  KEY `fk_tarefas_contrato_id_tarefa_idx` (`id_tarefa`),
-  KEY `fk_tarefas_contrato_id_contrato_idx` (`id_contrato`),
-  CONSTRAINT `fk_tarefas_contrato_id_contrato` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id`),
-  CONSTRAINT `fk_tarefas_contrato_id_tarefa` FOREIGN KEY (`id_tarefa`) REFERENCES `tarefas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `status` varchar(45) DEFAULT 'Ativo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `tarefas_contrato`
+-- Despejando dados para a tabela `tarefas_contrato`
 --
 
-LOCK TABLES `tarefas_contrato` WRITE;
-/*!40000 ALTER TABLE `tarefas_contrato` DISABLE KEYS */;
-INSERT INTO `tarefas_contrato` VALUES (6,11,3,NULL,'Ativo'),(7,11,5,NULL,'Ativo'),(8,11,4,10,'Ativo');
-/*!40000 ALTER TABLE `tarefas_contrato` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `tarefas_contrato` (`id`, `id_contrato`, `id_tarefa`, `validade_meses`, `status`) VALUES
+(15, 11, 6, NULL, 'Ativo'),
+(16, 11, 7, NULL, 'Ativo'),
+(17, 11, 8, 1, 'Ativo'),
+(18, 11, 9, NULL, 'Ativo'),
+(20, 11, 10, 1, 'Ativo'),
+(21, 12, 6, NULL, 'Ativo'),
+(22, 12, 7, NULL, 'Ativo');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `upload`
+-- Estrutura para tabela `upload`
 --
 
-DROP TABLE IF EXISTS `upload`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `upload` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `id_tarefa_contrato` int NOT NULL,
   `arquivo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nome` varchar(20) DEFAULT NULL,
-  `mime_type` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_upload_id_tarefa_contrato_idx` (`id_tarefa_contrato`),
-  CONSTRAINT `fk_upload_id_tarefa_contrato` FOREIGN KEY (`id_tarefa_contrato`) REFERENCES `tarefas_contrato` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `nome` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `mime_type` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `upload`
+-- Despejando dados para a tabela `upload`
 --
 
-LOCK TABLES `upload` WRITE;
-/*!40000 ALTER TABLE `upload` DISABLE KEYS */;
-/*!40000 ALTER TABLE `upload` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `upload` (`id`, `id_tarefa_contrato`, `arquivo`, `nome`, `mime_type`) VALUES
+(18, 15, '2023-11-28-12-01-5757_15_dummy.pdf', 'dummy.pdf', 'application/pdf'),
+(19, 15, '2023-11-28-12-02-0303_15_dummy.pdf', 'dummy.pdf', 'application/pdf'),
+(20, 16, '2023-11-28-12-02-3535_16_dummy.pdf', 'dummy.pdf', 'application/pdf'),
+(21, 17, '2023-11-28-12-04-2626_17_tcc_diagrama_mer.pdf', 'tcc_diagrama_mer.pdf', 'application/pdf'),
+(22, 16, '2023-11-28-12-05-3131_16_caso de uso tcc (1).png', 'caso de uso tcc (1).png', 'image/png'),
+(23, 21, '2023-11-28-12-07-4545_21_dummy.pdf', 'dummy.pdf', 'application/pdf');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estrutura para tabela `user`
 --
 
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `login` varchar(200) NOT NULL COMMENT 'Utilizado para fazer login',
   `email` varchar(150) NOT NULL,
   `password` varchar(250) NOT NULL,
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(1) NOT NULL DEFAULT '1',
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `name` varchar(250) NOT NULL,
-  `api_token` varchar(200) DEFAULT NULL COMMENT 'Token para autenticação via API',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_UN_login` (`login`),
-  UNIQUE KEY `user_UN_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COMMENT='Cadastro de usuários';
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `api_token` varchar(200) DEFAULT NULL COMMENT 'Token para autenticação via API'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='Cadastro de usuários';
 
 --
--- Dumping data for table `user`
+-- Despejando dados para a tabela `user`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('teste','email@exemplo.com','fc94908aacc4ee5f5628b0fda5cb487f','2023-02-15 13:24:35',1,9,'Usuário Teste','69c056d40ca6f4e6d21d4c6ff9d3b7ae');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `user` (`login`, `email`, `password`, `create_date`, `active`, `id`, `name`, `api_token`) VALUES
+('teste', 'email@exemplo.com', 'fc94908aacc4ee5f5628b0fda5cb487f', '2023-02-15 13:24:35', 1, 9, 'Usuário Teste', '69c056d40ca6f4e6d21d4c6ff9d3b7ae');
 
 --
--- Dumping routines for database 'tcc_andiara'
+-- Índices para tabelas despejadas
 --
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Índices de tabela `contrato`
+--
+ALTER TABLE `contrato`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `recurso`
+--
+ALTER TABLE `recurso`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `recursos_contrato`
+--
+ALTER TABLE `recursos_contrato`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_recursos_contrato_id_contrato_idx` (`id_contrato`),
+  ADD KEY `fk_recursos_contrato_id_recurso_idx` (`id_recurso`);
+
+--
+-- Índices de tabela `tarefas`
+--
+ALTER TABLE `tarefas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tarefas_contrato`
+--
+ALTER TABLE `tarefas_contrato`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_tarefas_contrato_id_tarefa_idx` (`id_tarefa`),
+  ADD KEY `fk_tarefas_contrato_id_contrato_idx` (`id_contrato`);
+
+--
+-- Índices de tabela `upload`
+--
+ALTER TABLE `upload`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_upload_id_tarefa_contrato_idx` (`id_tarefa_contrato`);
+
+--
+-- Índices de tabela `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_UN_login` (`login`),
+  ADD UNIQUE KEY `user_UN_email` (`email`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `contrato`
+--
+ALTER TABLE `contrato`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de tabela `recurso`
+--
+ALTER TABLE `recurso`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de tabela `recursos_contrato`
+--
+ALTER TABLE `recursos_contrato`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de tabela `tarefas`
+--
+ALTER TABLE `tarefas`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de tabela `tarefas_contrato`
+--
+ALTER TABLE `tarefas_contrato`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de tabela `upload`
+--
+ALTER TABLE `upload`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de tabela `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `recursos_contrato`
+--
+ALTER TABLE `recursos_contrato`
+  ADD CONSTRAINT `fk_recursos_contrato_id_contrato` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id`),
+  ADD CONSTRAINT `fk_recursos_contrato_id_recurso` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id`);
+
+--
+-- Restrições para tabelas `tarefas_contrato`
+--
+ALTER TABLE `tarefas_contrato`
+  ADD CONSTRAINT `fk_tarefas_contrato_id_contrato` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id`),
+  ADD CONSTRAINT `fk_tarefas_contrato_id_tarefa` FOREIGN KEY (`id_tarefa`) REFERENCES `tarefas` (`id`);
+
+--
+-- Restrições para tabelas `upload`
+--
+ALTER TABLE `upload`
+  ADD CONSTRAINT `fk_upload_id_tarefa_contrato` FOREIGN KEY (`id_tarefa_contrato`) REFERENCES `tarefas_contrato` (`id`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2023-11-21 21:49:41

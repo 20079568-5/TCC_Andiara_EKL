@@ -268,7 +268,6 @@
           }).done(function (data) {
             console.log(data);
             //data.popup.reload = true;
-            popup("success", data.popup);
             switch (form_name){
               case "tarefas_contrato_upload":
                 let form_upload =  $(`form[name='${form_name}']`);
@@ -285,6 +284,7 @@
                 data.popup.reload = true;
                 break;
             }
+            popup("success", data.popup);
             
           });
         }

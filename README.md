@@ -60,5 +60,8 @@
     3 - Configuração do arquivo ".htaccess" 
         * Altere os diretórios dos arquivos rereferênciados para sua estrutura de pastas 
 
-    4 - Acesse o sistema
+    4 - Restauração do banco de dados
+        * Restaure o arquivo "tcc_andiara.sql" que está na pasta "db_dump" para o seu banco de dados
+
+    5 - Acesse o sistema
         * Acesse o endereço configurado no virtual host pelo navegador e teste a aplicação
